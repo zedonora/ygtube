@@ -9,11 +9,12 @@ import videoRouter from "./routers/videoRouter";
 import routes from "./routers";
 const app = express();
 
-app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet());
-app.use(morgan("dev"));
+app.set("view engine", "pug"); // view 설정
+app.use(cookieParser()); // cookie 정보
+app.use(bodyParser.json()); // body 값
+app.use(bodyParser.urlencoded({ extended: true })); // body 값
+app.use(helmet()); // security부분
+app.use(morgan("dev")); // log부분
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
