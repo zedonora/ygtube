@@ -13,6 +13,7 @@ const app = express();
 
 app.use(helmet()); // security부분
 app.set("view engine", "pug"); // view 설정
+app.use("/uploads", express.static("uploads"));
 app.use(cookieParser()); // cookie 정보
 app.use(bodyParser.json()); // body 값
 app.use(bodyParser.urlencoded({ extended: true })); // body 값
