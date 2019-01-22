@@ -2,7 +2,7 @@ import multer from "multer";
 import routes from "./routers";
 
 const multerVideo = multer({ dest: "uploads/videos/" });
-
+const multerAvatar = multer({ dest: "uploads/avatars/" });
 export const localMiddleware = (req, res, next) => {
   res.locals.siteName = "YgTube";
   res.locals.routes = routes;
@@ -24,4 +24,6 @@ export const onlyPrivate = (req, res, next) => {
     res.redirect(routes.home);
   }
 };
+
 export const uploadVideo = multerVideo.single("videoFile");
+export const uploadAvatar = multerAvatar.single("avatar");
