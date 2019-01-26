@@ -10,6 +10,7 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import { localMiddleware } from "./middlewares";
 import globalRouter from "./routers/globalRouter";
+import apiRouter from "./routers/apiRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import routes from "./routers";
@@ -35,10 +36,12 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
 // local변수를 global 변수로 사용하도록 만들어주는 것. local 기능을 통해 변수에 접근 가능.
 app.use(localMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
+app.use(routes.api, apiRouter);
 
 export default app;
